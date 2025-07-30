@@ -1,6 +1,6 @@
-use my_db;
+USE my_db;
 
-SELECT DISTINCT name,department
+SELECT DISTINCT name, department
 FROM stud_details;
 
 SELECT DISTINCT name FROM stud_details;
