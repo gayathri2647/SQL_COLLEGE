@@ -39,4 +39,4 @@ DROP TABLE Students;
 -- 9. Delete the UniversityDB database
 DROP DATABASE UniversityDB;
 
-SELECT * FROM Students;
+
