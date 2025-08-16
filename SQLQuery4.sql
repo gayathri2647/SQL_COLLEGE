@@ -12,14 +12,7 @@ CREATE TABLE Students (
 INSERT INTO Students VALUES
 (1, 'Alice', 'JOHNSON', '2002-05-20', 3.65, '2023-06-01'),
 (2, 'BOB', 'smith', '2001-08-15', 2.80, '2022-09-01'),
-(3, 'Charlie', 'brown', '2003-11-30', 3.95, '2024-01-10'),
-(4, 'David', 'Miller', '2000-03-05', 2.50, '2021-08-25'),
-(5, 'Emily', 'Clark', '2004-09-12', 3.40, '2023-01-15'),
-(6, 'Frank', 'Lee', '2002-12-19', 3.10, '2022-11-11'),
-(7, 'Grace', 'Kim', '2001-01-25', 3.85, '2021-06-20'),
-(8, 'Hannah', 'O''Connor', '2000-07-04', 2.95, '2023-03-03'),
-(9, 'Ian', 'Wright', '2003-05-22', 3.20, '2023-02-01'),
-(10, 'Jane', 'Lopez', '2002-10-10', 3.70, '2022-05-09');
+(3, 'Charlie', 'brown', '2003-11-30', 3.95, '2024-01-10');
 
 SELECT StudentID,
   LEN(FirstName) AS FirstNameLength,                   -- String length

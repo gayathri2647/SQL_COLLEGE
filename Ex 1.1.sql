@@ -31,12 +31,11 @@ WHERE FirstName = 'Bala' AND LastName = 'Kumar';
 
 -- 7. Delete Keerthana's record
 DELETE FROM Students
-WHERE FirstName = 'Keerthana' AND LastName = 'Rao';
+WHERE StudentID=3;
 
 -- 8. Delete the Students table
 DROP TABLE Students;
 
 -- 9. Delete the UniversityDB database
 DROP DATABASE UniversityDB;
-
 
