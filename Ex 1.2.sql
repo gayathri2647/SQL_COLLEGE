@@ -51,7 +51,7 @@ GROUP BY Department;
 -- 8. Find employees whose last names start with 'B'
 SELECT * 
 FROM Employees
-WHERE LastName LIKE 'B%';
+WHERE LastName LIKE '%B';
 
 -- 9. Show departments where the average salary is greater than $60,000
 SELECT Department, AVG(Salary) AS AvgSalary
@@ -60,10 +60,9 @@ GROUP BY Department
 HAVING AVG(Salary) > 60000;
 
 -- 10. Display the top 3 highest-paid employees
-SELECT * 
+SELECT TOP 3 *
 FROM Employees
-ORDER BY Salary DESC
-LIMIT 3;
+ORDER BY Salary DESC;
 
 -- 11. Find the employee(s) who have the highest salary in the company
 SELECT * 
