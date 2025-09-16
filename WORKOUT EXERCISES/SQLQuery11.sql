@@ -12,7 +12,7 @@ CREATE TABLE Student1 (
 );
 
 -- Inserting sample data
-INSERT INTO Student VALUES 
+INSERT INTO Student1 VALUES 
 (1, 'Alice', 'Johnson', 20, 'F', 'CS', 3.80),
 (2, 'Bob', 'Smith', 22, 'M', 'Math', 2.90),
 (3, 'Carol', 'White', 21, 'F', 'CS', 3.95),
@@ -25,7 +25,7 @@ INSERT INTO Student VALUES
 --Computer Science Students
 CREATE VIEW CS_Students AS
 SELECT StudentID, FirstName, LastName, GPA
-FROM Student
+FROM Student1
 WHERE Department = 'CS';
 
 -----------------------------------------------------
@@ -33,7 +33,7 @@ WHERE Department = 'CS';
 -----------------------------------------------------
 ALTER VIEW CS_Students AS
 SELECT StudentID, FirstName, LastName, GPA
-FROM Student
+FROM Student1
 WHERE GPA >= 3.0;
 
 -----------------------------------------------------
@@ -47,12 +47,12 @@ WHERE StudentID = 1;
 -- INSERTING DATA THROUGH A VIEW
 -----------------------------------------------------
 -- First create an insertable view including all columns
-CREATE VIEW Insertable_StudentView AS
+CREATE VIEW Insertable_Student1View AS
 SELECT StudentID, FirstName, LastName, Age, Gender, Department, GPA
-FROM Student;
+FROM Student1;
 
 -- Insert into the Student table via the view
-INSERT INTO Insertable_StudentView
+INSERT INTO Insertable_Student1View
 VALUES (6, 'John', 'Doe', 21, 'M', 'Math', 3.10);
 
 -----------------------------------------------------
@@ -65,3 +65,7 @@ WHERE StudentID = 3;
 -- DROPPING A VIEW
 -----------------------------------------------------
 DROP VIEW CS_Students;
+
+select * from CS_Students;
+
+select * from Student1;
