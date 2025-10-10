@@ -1,4 +1,20 @@
--- Step 1: Simple Example using Students Table
+CREATE DATABASE Store_DB;
+USE Store_DB;
+
+-- Create Sample Students Table
+CREATE TABLE Students (
+    StudentID INT PRIMARY KEY,
+    StudentName VARCHAR(100),
+    Department VARCHAR(50),
+    Marks INT
+);
+
+INSERT INTO Students (StudentID, StudentName, Department, Marks) VALUES
+(1, 'John Doe', 'CSE', 85),
+(2, 'Jane Smith', 'ECE', 90),
+(3, 'Sam Brown', 'MECH', 78);
+
+--Simple Example using Students Table
 CREATE PROCEDURE GetAllStudents
 AS
 BEGIN
@@ -10,8 +26,7 @@ GO
 EXEC GetAllStudents;
 GO
 
-
--- Step 2: Stored Procedure with Input Parameter
+--Stored Procedure with Input Parameter
 CREATE PROCEDURE GetStudentByID
     @StudentID INT
 AS
@@ -25,8 +40,7 @@ GO
 EXEC GetStudentByID @StudentID = 1;
 GO
 
-
--- Step 3: Stored Procedure with Output Parameter
+--Stored Procedure with Output Parameter
 CREATE PROCEDURE GetStudentMarks
     @StudentID INT,
     @Marks INT OUTPUT
@@ -44,8 +58,7 @@ EXEC GetStudentMarks @StudentID = 1, @Marks = @StudentMarks OUTPUT;
 PRINT 'Marks: ' + CAST(@StudentMarks AS VARCHAR);
 GO
 
-
--- Step 4: Stored Procedure with INSERT
+--Stored Procedure with INSERT
 CREATE PROCEDURE AddNewStudent
     @StudentName VARCHAR(100),
     @Department VARCHAR(50),
@@ -62,8 +75,7 @@ EXEC AddNewStudent @StudentName='Anu', @Department='ECE', @Marks=88;
 GO
 
 
--- Step 5: Example – Sales Database
--- Create Tables
+--Example – Sales Database
 CREATE TABLE Products (
     ProductID INT IDENTITY(1,1) PRIMARY KEY,
     ProductName VARCHAR(100),
@@ -89,7 +101,7 @@ INSERT INTO Products (ProductName, Price, Stock) VALUES
 GO
 
 
--- Step 6: Stored Procedures for Sales Database
+--Stored Procedures for Sales Database
 
 -- 1. View All Products
 CREATE PROCEDURE GetAllProducts

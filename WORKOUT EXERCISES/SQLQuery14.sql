@@ -4,7 +4,7 @@ USE BankDB;
 --Create Table
 CREATE TABLE BankAccounts (
     AccountNo INT PRIMARY KEY,
-    HolderName VARCHAR(100),
+    HolderName VARCHAR(100),+9
     Balance DECIMAL(10,2)
 );
 
@@ -14,7 +14,6 @@ INSERT INTO BankAccounts VALUES (102, 'Priya', 3000.00);
 
 -- Check data
 SELECT * FROM BankAccounts;
-
 --Perform Transaction (Money Transfer)
 BEGIN TRANSACTION;
 
