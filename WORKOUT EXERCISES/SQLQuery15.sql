@@ -59,20 +59,21 @@ PRINT 'Marks: ' + CAST(@StudentMarks AS VARCHAR);
 GO
 
 --Stored Procedure with INSERT
-CREATE PROCEDURE AddNewStudent
+CREATE PROCEDURE AddNewStudents
+    @StudentID INT,
     @StudentName VARCHAR(100),
     @Department VARCHAR(50),
     @Marks INT
 AS
 BEGIN
-    INSERT INTO Students (StudentName, Department, Marks)
-    VALUES (@StudentName, @Department, @Marks);
+    INSERT INTO Students (StudentID, StudentName, Department, Marks)
+    VALUES (@StudentID, @StudentName, @Department, @Marks);
 END;
 GO
 
 -- Execute:
-EXEC AddNewStudent @StudentName='Anu', @Department='ECE', @Marks=88;
-GO
+EXEC AddNewStudents @StudentID=6, @StudentName='Anu', @Department='ECE', @Marks=88;
+Select * from Students;
 
 
 --Example – Sales Database
