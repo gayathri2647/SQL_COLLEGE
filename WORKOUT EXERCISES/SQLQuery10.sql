@@ -23,6 +23,8 @@ INSERT INTO HR_Employees VALUES
 (5, 'Eve', 'HR'),
 (2, 'Bob', 'HR'); 
 
+Insert Into HR_Employees Values (3, 'Charlie', 'IT'); -- duplicate emp_id for testing
+
 --union remove duplicates
 SELECT emp_id, emp_name, department FROM IT_Employees
 UNION

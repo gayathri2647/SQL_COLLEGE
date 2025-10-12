@@ -1,65 +1,72 @@
-use my_db;
+CREATE DATABASE ControlFlowDB;
+USE ControlFlowDB;
 
-CREATE TABLE Stud1(
+-- Table
+CREATE TABLE StudentTbl(
     StudentID INT PRIMARY KEY,
-    Name VARCHAR(50),
+    Name VARCHAR(50) NOT NULL,
     Marks INT,
     Age INT
 );
 
-INSERT INTO Stud1 VALUES
+-- Sample Data
+INSERT INTO StudentTbl VALUES
 (1, 'Arun', 85, 20),
 (2, 'Bala', 45, 19),
 (3, 'Chitra', 72, 21),
 (4, 'Deepa', 30, 18),
 (5, 'Elango', 90, 22);
 
---If…ELSE Example
-
+------------------------------1. IF…ELSE---------------------------------------------
+-- Check whether a student passed or failed
 DECLARE @sid INT = 2;
 DECLARE @marks INT;
 
-SELECT @marks = Marks FROM Stud1 WHERE StudentID = @sid;
+SELECT @marks = Marks FROM StudentTbl WHERE StudentID = @sid;
 
 IF @marks >= 50
     PRINT 'Student Passed';
 ELSE
     PRINT 'Student Failed';
 
---WHILE Loop Example
-
+-----------------------------------2. WHILE Loop--------------------------------------
+-- Print all student names one by one
 DECLARE @id INT = 1;
-WHILE @id <= (SELECT MAX(StudentID) FROM Stud1)
+DECLARE @name NVARCHAR(MAX);
+
+WHILE @id <= (SELECT MAX(StudentID) FROM StudentTbl)
 BEGIN
-    PRINT (SELECT Name FROM Stud1 WHERE StudentID = @id);
+    SELECT @name = Name FROM StudentTbl WHERE StudentID = @id;
+    IF @name IS NOT NULL
+        PRINT @name;
     SET @id = @id + 1;
 END
 
-
---BREAK and CONTINUE Example
-
+-------------------------3. BREAK and CONTINUE--------------------------------
+-- Skip students with marks < 40, stop when marks = 90
 DECLARE @i INT = 1, @mark INT;
-WHILE @i <= (SELECT MAX(StudentID) FROM Stud1)
+
+WHILE @i <= (SELECT MAX(StudentID) FROM StudentTbl)
 BEGIN
-    SELECT @mark = Marks FROM Stud1 WHERE StudentID = @i;
+    SELECT @mark = Marks FROM StudentTbl WHERE StudentID = @i;
 
     IF @mark < 40
     BEGIN
         SET @i = @i + 1;
-        CONTINUE;  -- skip failed students
+        CONTINUE; -- skip failed students
     END
 
     IF @mark = 90
-        BREAK;  -- stop when topper is found
+        BREAK; -- stop when topper is found
 
     PRINT 'StudentID ' + CAST(@i AS VARCHAR) + ' Marks: ' + CAST(@mark AS VARCHAR);
     SET @i = @i + 1;
 END
 
---GOTO Example
-
+-----------------------------------4. GOTO--------------------------------------------
+-- Jump to a label if a condition is met
 DECLARE @age INT;
-SELECT @age = Age FROM Stud1 WHERE StudentID = 4;
+SELECT @age = Age FROM StudentTbl WHERE StudentID = 4;
 
 IF @age < 18
     GOTO NotEligible;
@@ -70,14 +77,16 @@ RETURN;
 NotEligible:
 PRINT 'Student not eligible (Age < 18)';
 
---RETURN Example (Stored Procedure)
-
-GO
-CREATE PROCEDURE CheckResult @StudentID INT
+----------------------------------5. RETURN (Stored Procedure)------------------------
+-- Check student result using a stored procedure
+CREATE PROCEDURE CheckResults
+    @StudentID INT
 AS
 BEGIN
     DECLARE @marks INT;
-    SELECT @marks = Marks FROM Stud1 WHERE StudentID = @StudentID;
+    SELECT @marks = Marks
+    FROM StudentTbl
+    WHERE StudentID = @StudentID;
 
     IF @marks IS NULL
     BEGIN
@@ -90,20 +99,17 @@ BEGIN
     ELSE
         PRINT 'Fail';
 END
-GO
 
--- Run
-EXEC CheckResult 2;
+-- Execute procedure
+EXEC CheckResults @StudentID = 1;
 
---TRY…CATCH Example
+-----------------------------------------------6. TRY…CATCH---------------------------
+-- Handle errors (e.g., inserting duplicate primary key)
 BEGIN TRY
-    DECLARE @avg FLOAT;
-    SELECT @avg = SUM(Marks) / COUNT(*) 
-    FROM Stud1 
-    WHERE Age < 0; -- invalid case
-    PRINT 'Average Marks = ' + CAST(@avg AS VARCHAR);
+    INSERT INTO StudentTbl (StudentID, Name, Age, Marks)
+    VALUES (1, 'Fahad', 20, 75); -- Duplicate StudentID will fail
+    PRINT 'Insert successful.';
 END TRY
 BEGIN CATCH
-    PRINT 'Error: ' + ERROR_MESSAGE();
-END CATCH;
-
+    PRINT 'Insert failed: ' + ERROR_MESSAGE();
+END CATCH

@@ -1,4 +1,5 @@
-use my_db;
+CREATE DATABASE ViewExamples;
+USE ViewExamples;
 
 -- Creating the base Student table
 CREATE TABLE Student1 (
