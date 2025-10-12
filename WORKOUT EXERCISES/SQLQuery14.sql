@@ -4,7 +4,7 @@ USE BankDB;
 --Create Table
 CREATE TABLE BankAccounts (
     AccountNo INT PRIMARY KEY,
-    HolderName VARCHAR(100),+9
+    HolderName VARCHAR(100),
     Balance DECIMAL(10,2)
 );
 
@@ -17,25 +17,26 @@ SELECT * FROM BankAccounts;
 --Perform Transaction (Money Transfer)
 BEGIN TRANSACTION;
 
-UPDATE BankAccounts
-SET Balance = Balance - 1000
-WHERE AccountNo = 101;  -- Debit from Ravi
-
 --Check if sufficient balance
-IF (SELECT Balance FROM BankAccounts WHERE AccountNo = 101) < 0
+IF (SELECT Balance FROM BankAccounts WHERE AccNo = 101) < 1000
 BEGIN
     PRINT 'Insufficient balance! Rolling back...';
     ROLLBACK TRANSACTION;
     RETURN;
 END;
-
-UPDATE BankAccounts
-SET Balance = Balance + 1000
-WHERE AccountNo = 102;  -- Credit to Priya
+ELSE
+BEGIN
+    UPDATE BankAccounts
+    SET Balance = Balance - 1000
+    WHERE AccNo = 101;  
+END;
 
 -- Check for errors and commit/rollback
 IF @@ERROR = 0
 BEGIN
+    UPDATE BankAccounts 
+    SET Balance = Balance + 1000 
+    WHERE AccountNo = 102;
     COMMIT TRANSACTION;
     PRINT 'Transaction Successful: Amount Transferred';
 END

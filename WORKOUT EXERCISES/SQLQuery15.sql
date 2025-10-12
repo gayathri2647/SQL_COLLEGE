@@ -104,7 +104,7 @@ GO
 
 --Stored Procedures for Sales Database
 
--- 1. View All Products
+-- 1. View All Products(No arguments,No return type)
 CREATE PROCEDURE GetAllProducts
 AS
 BEGIN
@@ -117,7 +117,7 @@ EXEC GetAllProducts;
 GO
 
 
--- 2. Add New Sale (with Stock Check)
+-- 2. Add New Sale (with Stock Check)(With arguments, No return type)
 CREATE PROCEDURE AddSale
     @ProductID INT,
     @Quantity INT
@@ -152,7 +152,7 @@ EXEC AddSale @ProductID = 1, @Quantity = 2;
 GO
 
 
--- 3. View Sales by Product
+-- 3. View Sales by Product(With arguments, Without return type)
 CREATE PROCEDURE GetSalesByProduct
     @ProductID INT
 AS

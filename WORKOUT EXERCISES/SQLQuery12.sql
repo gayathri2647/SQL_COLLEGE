@@ -84,9 +84,7 @@ CREATE PROCEDURE CheckResults
 AS
 BEGIN
     DECLARE @marks INT;
-    SELECT @marks = Marks
-    FROM StudentTbl
-    WHERE StudentID = @StudentID;
+    SELECT @marks = Marks FROM StudentTbl WHERE StudentID = @StudentID;
 
     IF @marks IS NULL
     BEGIN
@@ -106,10 +104,12 @@ EXEC CheckResults @StudentID = 1;
 -----------------------------------------------6. TRY…CATCH---------------------------
 -- Handle errors (e.g., inserting duplicate primary key)
 BEGIN TRY
-    INSERT INTO StudentTbl (StudentID, Name, Age, Marks)
-    VALUES (1, 'Fahad', 20, 75); -- Duplicate StudentID will fail
+    INSERT INTO StudentTbl (StudentID, Name, Age, Marks) VALUES (1,'Gayathri', 20, 75); -- Duplicate StudentID will fail 
     PRINT 'Insert successful.';
 END TRY
 BEGIN CATCH
     PRINT 'Insert failed: ' + ERROR_MESSAGE();
 END CATCH
+
+-- View final data
+SELECT * FROM StudentTbl;
