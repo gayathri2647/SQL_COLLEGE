@@ -1,5 +1,10 @@
-use my_db;
+-- Create and use a database
+CREATE DATABASE retrieve;
 
+-- Use the existing database
+USE retrieve;
+
+-- Create table for student details
 CREATE TABLE stud_details (
     roll_no INT PRIMARY KEY,
     name VARCHAR(100) NOT NULL,
@@ -8,44 +13,53 @@ CREATE TABLE stud_details (
     department VARCHAR(50)
 );
 
+-- Insert records into the table
 INSERT INTO stud_details (roll_no, name, age, gender, department)
-VALUES (201, 'Abilash', 20, 'Male', 'Computer Science');
+VALUES 
+(201, 'Abilash', 20, 'Male', 'Computer Science'),
+(202, 'Preetha', 21, 'Female', 'Information Technology'),
+(203, 'Sandeep', 22, 'Male', 'Mechanical Engineering'),
+(204, 'Gopi', 20, 'Female', 'Electrical Engineering'),
+(205, 'Swetha', 23, 'Female', 'Civil Engineering');
 
-INSERT INTO stud_details (roll_no, name, age, gender, department)
-VALUES (202, 'Gowtham', 21, 'Female', 'Information Technology');
+-- Retrieve all columns from the table
+SELECT * FROM stud_details;
 
-INSERT INTO stud_details (roll_no, name, age, gender, department)
-VALUES (203, 'Niranj', 22, 'Male', 'Mechanical Engineering');
+-- Update names for specific roll numbers
+UPDATE stud_details
+SET name = 'Preethu'
+WHERE roll_no = 202;
 
-INSERT INTO stud_details (roll_no, name, age, gender, department)
-VALUES (204, 'Mahadev', 20, 'Female', 'Electrical Engineering');
+UPDATE stud_details
+SET name = 'Arthi'
+WHERE roll_no = 204;
 
-INSERT INTO stud_details (roll_no, name, age, gender, department)
-VALUES (205, 'Subin', 23, 'Male', 'Civil Engineering');
+-- Retrieve a particular row
+SELECT * FROM stud_details
+WHERE roll_no = 205;
 
-select * from stud_details; --retrieve all columns from table
+-- Retrieve specific columns
+SELECT name, department FROM stud_details;
 
-update stud_details
-set name= 'Nandana'
-where roll_no=202;
+-- Retrieve all students sorted by age in descending order
+SELECT * FROM stud_details
+ORDER BY age DESC;
 
-update stud_details
-set name= 'Sanjana'
-where roll_no=204;
+-- Retrieve unique ages
+SELECT DISTINCT age FROM stud_details;
 
-select * from stud_details where roll_no=204; --retrieve particular row
+-- Retrieve students whose name starts with 'A'
+SELECT * FROM stud_details
+WHERE name LIKE 'A%';
 
-select name,department from stud_details;  --retrieve specific columns
+-- Retrieve students whose age is between 20 and 23
+SELECT * FROM stud_details
+WHERE age BETWEEN 20 AND 21;
 
-select * from stud_details ORDER BY age DESC; --retrieve all students and sort them by age in descending order
+-- Retrieve students from specific departments
+SELECT * FROM stud_details
+WHERE department IN ('Computer Science', 'Electrical Engineering');
 
-select DISTINCT age from stud_details; --retrieves unique age
-
-Select * from stud_details where name LIKE'A%'; --retrieves student whose name starts with A
-
-Select * from stud_details where age between 20 and 23; --Retrieves student with age between 20 and 23.
-
-SELECT * FROM stud_details WHERE department IN ('Computer Science', 'Electrical Engineering');
-
-SELECT department AS 'Dept Name', name AS 'Stud_Name' FROM stud_details;
-
+-- Retrieve and rename columns using aliases
+SELECT department AS 'Dept_Name', name AS 'Stud_Name'
+FROM stud_details;
