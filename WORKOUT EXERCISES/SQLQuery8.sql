@@ -1,5 +1,8 @@
-use my_db;
+--Create database and use it
+CREATE DATABASE Groupedb;
+USE Groupedb;
 
+--Create the 'stud' table
 CREATE TABLE stud (
     id INT PRIMARY KEY,
     name VARCHAR(50),
@@ -7,6 +10,7 @@ CREATE TABLE stud (
     marks INT
 );
 
+--Insert records into 'stud'
 INSERT INTO stud(id, name, subject, marks) VALUES
 (1, 'Rahul', 'Math', 85),
 (2, 'Priya', 'Science', 90),
@@ -14,20 +18,23 @@ INSERT INTO stud(id, name, subject, marks) VALUES
 (4, 'Priya', 'Math', 95),
 (5, 'Anjali', 'Math', 70);
 
+--Total marks per student
 SELECT name, SUM(marks) AS total_marks
 FROM stud
-GROUP BY name; --Total marks per student
+GROUP BY name;
 
+--Average marks per subject
 SELECT subject, AVG(marks) AS avg_marks
 FROM stud
-GROUP BY subject; --Average marks per subject
+GROUP BY subject;
 
+--Count of students per subject
 SELECT subject, COUNT(*) AS student_count
 FROM stud
-GROUP BY subject; --Count of students per subject
+GROUP BY subject;
 
+--Show only students with total marks > 150
 SELECT name, SUM(marks) AS total_marks
 FROM stud
 GROUP BY name
-HAVING SUM(marks) > 150; --Show only students with total marks > 150
-
+HAVING SUM(marks) > 150;

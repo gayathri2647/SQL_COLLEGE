@@ -1,7 +1,8 @@
-CREATE DATABASE ViewExamples;
-USE ViewExamples;
+--Create a new database
+CREATE DATABASE Views;
+USE Views;
 
--- Creating the base Student table
+--CREATE BASE TABLE
 CREATE TABLE Student1 (
     StudentID INT PRIMARY KEY,
     FirstName NVARCHAR(50),
@@ -12,61 +13,61 @@ CREATE TABLE Student1 (
     GPA DECIMAL(3,2)
 );
 
--- Inserting sample data
+--INSERT DATA
 INSERT INTO Student1 VALUES 
 (1, 'Alice', 'Johnson', 20, 'F', 'CS', 3.80),
 (2, 'Bob', 'Smith', 22, 'M', 'Math', 2.90),
 (3, 'Carol', 'White', 21, 'F', 'CS', 3.95),
-(4, 'David', 'Green', 23, 'M', 'Physics', 2.70);
+(4, 'David', 'Green', 23, 'M', 'Physics', 2.70),
+(5, 'Eva', 'Brown', 20, 'F', 'CS', 3.50);
 
------------------------------------------------------
--- CREATE VIEWS
------------------------------------------------------
-
---Computer Science Students
+--CREATE A VIEW (for Computer Science students)
 CREATE VIEW CS_Students AS
 SELECT StudentID, FirstName, LastName, GPA
 FROM Student1
 WHERE Department = 'CS';
 
------------------------------------------------------
--- UPDATING A VIEW
------------------------------------------------------
+--Display the CS_Students view
+SELECT * FROM CS_Students;
+
+--ALTER THE VIEW (for students with GPA >= 3.0)
 ALTER VIEW CS_Students AS
 SELECT StudentID, FirstName, LastName, GPA
 FROM Student1
 WHERE GPA >= 3.0;
 
------------------------------------------------------
--- UPDATING DATA THROUGH A VIEW
------------------------------------------------------
+-- Display updated view
+SELECT * FROM CS_Students;
+
+--UPDATE DATA THROUGH VIEW
 UPDATE CS_Students
 SET GPA = 4.00
 WHERE StudentID = 1;
+-- Verify update
+SELECT * FROM Student1;
 
------------------------------------------------------
--- INSERTING DATA THROUGH A VIEW
------------------------------------------------------
--- First create an insertable view including all columns
+--CREATE INSERTABLE VIEW (all columns)
 CREATE VIEW Insertable_Student1View AS
 SELECT StudentID, FirstName, LastName, Age, Gender, Department, GPA
 FROM Student1;
 
--- Insert into the Student table via the view
+-- Insert a new record using the view
 INSERT INTO Insertable_Student1View
 VALUES (6, 'John', 'Doe', 21, 'M', 'Math', 3.10);
+-- Verify insertion
+SELECT * FROM Student1;
 
------------------------------------------------------
--- DELETING DATA THROUGH A VIEW
------------------------------------------------------
+--DELETE DATA THROUGH VIEW
 DELETE FROM CS_Students
 WHERE StudentID = 3;
+-- Verify deletion
+SELECT * FROM Student1;
 
------------------------------------------------------
--- DROPPING A VIEW
------------------------------------------------------
+--DROP THE VIEW
 DROP VIEW CS_Students;
+-- Verify that the view is dropped
+-- (This will cause an error if view is successfully deleted)
+-- SELECT * FROM CS_Students;
 
-select * from CS_Students;
-
-select * from Student1;
+-- Final check on base table
+SELECT * FROM Student1;

@@ -15,28 +15,22 @@ CREATE TABLE stud_details (
 
 -- Insert records into the table
 INSERT INTO stud_details (roll_no, name, age, gender, department)
-VALUES 
-(201, 'Abilash', 20, 'Male', 'Computer Science'),
-(202, 'Preetha', 21, 'Female', 'Information Technology'),
-(203, 'Sandeep', 22, 'Male', 'Mechanical Engineering'),
-(204, 'Gopi', 20, 'Female', 'Electrical Engineering'),
-(205, 'Swetha', 23, 'Female', 'Civil Engineering');
+VALUES
+(301, 'Emma', 20, 'Female', 'Computer Science'),
+(302, 'John', 21, 'Male', 'Information Technology'),
+(303, 'Olivia', 22, 'Female', 'Data Science');
 
 -- Retrieve all columns from the table
 SELECT * FROM stud_details;
 
 -- Update names for specific roll numbers
 UPDATE stud_details
-SET name = 'Preethu'
-WHERE roll_no = 202;
-
-UPDATE stud_details
-SET name = 'Arthi'
-WHERE roll_no = 204;
+SET name = 'Bob'
+WHERE roll_no = 302;
 
 -- Retrieve a particular row
 SELECT * FROM stud_details
-WHERE roll_no = 205;
+WHERE roll_no = 303;
 
 -- Retrieve specific columns
 SELECT name, department FROM stud_details;
@@ -48,9 +42,9 @@ ORDER BY age DESC;
 -- Retrieve unique ages
 SELECT DISTINCT age FROM stud_details;
 
--- Retrieve students whose name starts with 'A'
+-- Retrieve students whose name starts with 'O'
 SELECT * FROM stud_details
-WHERE name LIKE 'A%';
+WHERE name LIKE 'O%';
 
 -- Retrieve students whose age is between 20 and 23
 SELECT * FROM stud_details
@@ -58,8 +52,9 @@ WHERE age BETWEEN 20 AND 21;
 
 -- Retrieve students from specific departments
 SELECT * FROM stud_details
-WHERE department IN ('Computer Science', 'Electrical Engineering');
+WHERE department IN ('Computer Science', 'Data Science');
 
 -- Retrieve and rename columns using aliases
 SELECT department AS 'Dept_Name', name AS 'Stud_Name'
 FROM stud_details;
+

@@ -14,11 +14,12 @@ INSERT INTO BankAccounts VALUES (102, 'Priya', 3000.00);
 
 -- Check data
 SELECT * FROM BankAccounts;
+
 --Perform Transaction (Money Transfer)
 BEGIN TRANSACTION;
 
 --Check if sufficient balance
-IF (SELECT Balance FROM BankAccounts WHERE AccNo = 101) < 1000
+IF (SELECT Balance FROM BankAccounts WHERE AccountNo = 101) < 1000
 BEGIN
     PRINT 'Insufficient balance! Rolling back...';
     ROLLBACK TRANSACTION;
@@ -28,7 +29,7 @@ ELSE
 BEGIN
     UPDATE BankAccounts
     SET Balance = Balance - 1000
-    WHERE AccNo = 101;  
+    WHERE AccountNo = 101;  
 END;
 
 -- Check for errors and commit/rollback

@@ -1,5 +1,8 @@
-use my_db;
+--Create database and use it
+CREATE DATABASE Aggregatedb;
+USE Aggregatedb;
 
+--Create the 'sales' table
 CREATE TABLE sales (
     id INT,
     product VARCHAR(50),
@@ -7,20 +10,26 @@ CREATE TABLE sales (
     price INT
 );
 
+--Insert records into the 'sales' table
 INSERT INTO sales (id, product, quantity, price) VALUES
 (1, 'Pen', 10, 5),
 (2, 'Pencil', 20, 2),
 (3, 'Pen', 5, 5),
 (4, 'Notebook', 7, 15);
 
-SELECT SUM(quantity) AS total_quantity FROM sales; --total quantity sold
+--Calculate total quantity sold
+SELECT SUM(quantity) AS total_quantity FROM sales;
 
-SELECT AVG(price) AS average_price FROM sales; --average price
+--Calculate average price of products
+SELECT AVG(price) AS average_price FROM sales;
 
-SELECT COUNT(*) AS total_transactions FROM sales; --total no of transactions
+--Count total number of transactions
+SELECT COUNT(*) AS total_transactions FROM sales;
 
-SELECT MAX(price) AS highest_price, MIN(price) AS lowest_price FROM sales; --Highest and Lowest Price
+--Find highest and lowest price
+SELECT MAX(price) AS highest_price, MIN(price) AS lowest_price FROM sales;
 
+--Calculate total quantity sold per product
 SELECT product, SUM(quantity) AS total_quantity
 FROM sales
-GROUP BY product;  --Total quantity sold per product (with GROUP BY)
+GROUP BY product;

@@ -16,8 +16,8 @@ CREATE TABLE employees (
 -- INSERT: Add records into the table
 INSERT INTO employees (id, name, age, department, salary)
 VALUES 
-    (1, 'Preethu', 19, 'DSA', 20000),
-    (2, 'Swethu', 19, 'Civil', 25000);
+    (1, 'Alice', 19, 'DSA', 20000),
+    (2, 'Bob', 19, 'Civil', 25000);
 
 -- Display all data
 SELECT * FROM employees;
