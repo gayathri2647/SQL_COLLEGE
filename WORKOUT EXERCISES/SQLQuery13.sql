@@ -14,6 +14,24 @@ Insert INTO Students (StudentName, Department, Marks) VALUES
 ('Bob', 'Mathematics', 90),
 ('Charlie', 'Physics', 78);
 
+--DML Trigger Example: After Insert
+Create Trigger AfterInsertValue
+ON Students
+AFTER INSERT
+AS
+BEGIN
+    Print 'New student record inserted'
+END;
+
+--DDL Trigger Example: After Create Table
+Create Trigger AfterCreate
+ON DATABASE
+FOR CREATE_TABLE
+AS
+BEGIN
+    Print 'A new table has been created in the database.'
+END;
+
 --Create Table AuditLog → to store trigger logs
 CREATE TABLE AuditLog (
     LogID INT IDENTITY(1,1) PRIMARY KEY,
@@ -66,6 +84,7 @@ BEGIN
     SELECT StudentID, 'DELETE', GETDATE()
     FROM deleted;
 END;
+GO
 
 -- Delete record(Test the AFTER DELETE Trigger)
 DELETE FROM Students
