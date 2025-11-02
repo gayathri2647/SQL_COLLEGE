@@ -14,36 +14,6 @@ Insert INTO Students (StudentName, Department, Marks) VALUES
 ('Bob', 'Mathematics', 90),
 ('Charlie', 'Physics', 78);
 
---DML Trigger Example: After Insert
-Create Trigger AfterInsertValue
-ON Students
-AFTER INSERT
-AS
-BEGIN
-    Print 'New student record inserted'
-END;
-
---DDL Trigger Example: After Create Table
-Create Trigger AfterCreate
-ON DATABASE
-FOR CREATE_TABLE
-AS
-BEGIN
-    Print 'A new table has been created in the database.'
-END;
-
-Create Table TestTable (ID INT);
-
---Logon Trigger Example
-Create Trigger LogonTrigger
-ON ALL SERVER
-FOR LOGON
-AS
-BEGIN
-    Print 'A user has logged into the SQL Server instance.'
-END;
--- To test the logon trigger, you would need to disconnect and reconnect to the SQL Server instance.
-
 --Create Table AuditLog → to store trigger logs
 CREATE TABLE AuditLog (
     LogID INT IDENTITY(1,1) PRIMARY KEY,
@@ -64,7 +34,6 @@ BEGIN
     SELECT StudentID, 'INSERT', GETDATE()
     FROM inserted;
 END;
-GO
 
 -- Insert a new record(Test the AFTER INSERT Trigger)
 INSERT INTO Students (StudentName, Department, Marks)
@@ -81,7 +50,6 @@ BEGIN
     FROM deleted d
     INNER JOIN inserted i ON d.StudentID = i.StudentID;
 END;
-GO
 
 -- Update record(Test the AFTER UPDATE Trigger)
 UPDATE Students
@@ -98,7 +66,6 @@ BEGIN
     SELECT StudentID, 'DELETE', GETDATE()
     FROM deleted;
 END;
-GO
 
 -- Delete record(Test the AFTER DELETE Trigger)
 DELETE FROM Students

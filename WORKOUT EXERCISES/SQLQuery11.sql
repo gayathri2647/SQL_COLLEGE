@@ -47,13 +47,12 @@ WHERE StudentID = 1;
 SELECT * FROM Student1;
 
 --CREATE INSERTABLE VIEW (all columns)
-CREATE VIEW Insertable_Student1View AS
-SELECT StudentID, FirstName, LastName, Age, Gender, Department, GPA
+SELECT StudentID, FirstName, LastName, GPA
 FROM Student1;
 
 -- Insert a new record using the view
-INSERT INTO Insertable_Student1View
-VALUES (6, 'John', 'Doe', 21, 'M', 'Math', 3.10);
+INSERT INTO CS_Students
+VALUES (6, 'John', 'Doe', 3.10);
 -- Verify insertion
 SELECT * FROM Student1;
 
@@ -65,9 +64,6 @@ SELECT * FROM Student1;
 
 --DROP THE VIEW
 DROP VIEW CS_Students;
--- Verify that the view is dropped
--- (This will cause an error if view is successfully deleted)
--- SELECT * FROM CS_Students;
 
 -- Final check on base table
 SELECT * FROM Student1;

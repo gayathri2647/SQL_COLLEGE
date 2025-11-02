@@ -21,7 +21,7 @@ BEGIN TRANSACTION;
 --Check if sufficient balance
 IF (SELECT Balance FROM BankAccounts WHERE AccountNo = 101) < 1000
 BEGIN
-    PRINT 'Insufficient balance! Rolling back...';
+    PRINT 'Insufficient balance!';
     ROLLBACK TRANSACTION;
     RETURN;
 END;
