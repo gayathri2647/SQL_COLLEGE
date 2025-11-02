@@ -54,8 +54,7 @@ GROUP BY department;
 --Retrieve all employees with their individual salary 
 --and the overall average salary of all employees
 SELECT 
-    name,
-    salary,
+    name,salary,
     (SELECT AVG(salary) FROM emp) AS avg_salary
 FROM emp;
 

@@ -59,12 +59,7 @@ FROM Employees
 GROUP BY Department
 HAVING AVG(Salary) > 60000;
 
--- 10. Display the top 3 highest-paid employees
-SELECT TOP 3 *
-FROM Employees
-ORDER BY Salary DESC;
+-- 10. Retrieve students from specific departments
+SELECT * FROM Employees
+WHERE department IN ('HR', 'IT');
 
--- 11. Find the employee(s) who have the highest salary in the company
-SELECT * 
-FROM Employees
-WHERE Salary = (SELECT MAX(Salary) FROM Employees);

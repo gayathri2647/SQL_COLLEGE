@@ -1,6 +1,5 @@
 -- 1. Create a database UniversityDB
 CREATE DATABASE UniversityDB;
-
 -- 2. Use the UniversityDB
 USE UniversityDB;
 
@@ -13,13 +12,9 @@ CREATE TABLE Students (
     GPA DECIMAL(3,2)
 );
 
--- 4. Insert a single student named Johnson
+-- 4. Insert a student names
 INSERT INTO Students (StudentID, FirstName, LastName, Major, GPA)
-VALUES (1, 'John', 'Johnson', 'Computer Science', 3.75);
-
--- 5. Insert all three students at once
-INSERT INTO Students (StudentID, FirstName, LastName, Major, GPA)
-VALUES 
+VALUES (1, 'John', 'Johnson', 'Computer Science', 3.75),
 (2, 'Bala', 'Kumar', 'Biology', 3.40),
 (3, 'Keerthana', 'Rao', 'Mathematics', 3.60),
 (4, 'Amit', 'Shah', 'Physics', 3.50);
